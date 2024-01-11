@@ -8,12 +8,12 @@
 # Note the use of source here and not conda,
 #this is done because we are in a non interactive
 #terminal when running the job on the DPS.
-
+echo "sourcing"
 source activate dps_tutorial
 
 # Get current location of build script
 basedir=$( cd "$(dirname "$0")" ; pwd -P )
-
+echo $basedir
 # Create output directory to store outputs.
 # The name is output as required by the DPS.
 # Note how we dont provide an absolute path
@@ -37,4 +37,6 @@ REDUCTION_SIZE=$2
 
 # Call the script using the absolute paths
 # Any output written to the stdout and stderr streams will be automatically captured and placed in the output dir
+echo "echo running python"
 python ${basedir}/gdal_wrapper.py --input_file ${INPUT_FILENAME} --output_file output/${OUTPUT_FILENAME} --outsize ${REDUCTION_SIZE}
+echo "python run completed"
